@@ -17,6 +17,9 @@ SIMPLESOCKET.o:	SIMPLESOCKET.C
 
 SHA256.o:	SHA256.C
 	$(CC) -c $<  -std=c++11
+	
+PwdServer.o: PwdServer.C
+	$(CC) -c $<  -std=c++11
 
 TASK1.o:	TASK1.C
 	$(CC) -c $<  -std=c++11
@@ -48,7 +51,7 @@ mainTest:	mainTest.o
 	$(CC) -o $@ $^ TASK1.o SHA256.o -L/usr/lib/x86_64-linux-gnu -ldl -lstdc++  -std=c++11 -lpthread $(LIBS)
 
 server:	server.o
-	$(CC) -o server server.o  SIMPLESOCKET.o -L/usr/lib/x86_64-linux-gnu -ldl -lstdc++  -std=c++11
+	$(CC) -o server server.o  SIMPLESOCKET.o  TASK1.o  SHA256.o  -L/usr/lib/x86_64-linux-gnu -ldl -lstdc++  -std=c++11
 
 client:	client.o
 	$(CC) -o client client.o SIMPLESOCKET.o -L/usr/lib/x86_64-linux-gnu -ldl -lstdc++  -std=c++11
